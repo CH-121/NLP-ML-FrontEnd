@@ -1,0 +1,123 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <style>
+        h5 {
+            color: white;
+            font-weight: bolder;
+        }
+    </style>
+    <title>NLTK</title>
+</head>
+<div class="d-lg-flex half" style="height: max-content;">
+    <!-- Right div (definition of each term) -->
+    <div class="bg order-1 order-md-2" style="background: linear-gradient(to top, rgba(2, 2, 2, 0.623),rgba(87, 86, 86, 0.39)),center top / cover url('../../../assets/5.jpg')">
+        <!-- Tokenization -->
+        <div style="padding-left: 10px; padding-right: 10px;">
+            <h5> Tokenization </h5>
+            <p class="form-control" style="height: max-content;">
+                Tokenization is essentially splitting a phrase, sentence, paragraph, or an entire text document into smaller units, such as individual words or terms. Each of these smaller units are called tokens.
+            </p>
+        </div>
+        <!-- Stop words -->
+        <div style="padding-left: 10px; padding-right: 10px;">
+            <h5> Stop words </h5>
+            <p class="form-control" style="height: max-content;">
+                Stop words are words that are filtered out before or after the natural language data (text) are processed. While “stop words” typically refers to the most common words in a language, all-natural language processing tools don't use a single universal list
+                of stop words.
+            </p>
+        </div>
+        <!-- Lemmatization -->
+        <div style="padding-left: 10px; padding-right: 10px;">
+            <h5> Lemmatization </h5>
+            <p class="form-control" style="height: max-content;">
+                Lemmatization usually refers to doing things properly with the use of a vocabulary and morphological analysis of words, normally aiming to remove inflectional endings only and to return the base or dictionary form of a word, which is known as the lemma.
+            </p>
+        </div>
+        <!-- Stemming -->
+        <div style="padding-left: 10px; padding-right: 10px;">
+            <h5> Stemming </h5>
+            <p class="form-control" style="height: max-content;">
+                Stemming is the process of reducing a word to its word stem that affixes to suffixes and prefixes or to the roots of words known as a lemma.
+            </p>
+        </div>
+        <!-- Pos Tagging -->
+        <div style="padding-left: 10px; padding-right: 10px;">
+            <h5> Pos Tagging </h5>
+            <p class="form-control" style="height: max-content;">
+                POS tagging is the process of marking up a word in a corpus to a corresponding part of a speech tag, based on its context and definition. This task is not straightforward, as a particular word may have a different part of speech based on the context in
+                which the word is used.
+            </p>
+        </div>
+        <!-- Bag Of Words -->
+        <div style="padding-left: 10px; padding-right: 10px;">
+            <h5> Bag Of Words </h5>
+            <p class="form-control" style="height: max-content;">
+                A bag-of-words is a representation of text that describes the occurrence of words within a document. It involves two things: A vocabulary of known words. A measure of the presence of known words.
+            </p>
+        </div>
+        <!-- IF-IDF -->
+        <div style="padding-left: 10px; padding-right: 10px;">
+            <h5> IF-IDF </h5>
+            <p class="form-control" style="height: max-content;">
+                TF-IDF is a statistical measure that evaluates how relevant a word is to a document in a collection of documents. ... It has many uses, most importantly in automated text analysis, and is very useful for scoring words in machine learning algorithms for
+                Natural Language Processing.
+            </p>
+        </div>
+        <!-- Word2Vect -->
+        <div style="padding-left: 10px; padding-right: 10px;">
+            <h5> Word2Vec </h5>
+            <p class="form-control" style="height: max-content;">
+                Word2vec is a two-layer neural net that processes text by “vectorizing” words. Its input is a text corpus and its output is a set of vectors: feature vectors that represent words in that corpus. While Word2vec is not a deep neural network, it turns text
+                into a numerical form that deep neural networks can understand.
+            </p>
+        </div>
+    </div>
+    <!-- Left div -->
+    <div class="contents order-2 order-md-1" style="background-image: linear-gradient(to left, #4192b8f3 0%, #3d84be 31%, #56317a 100%);">
+        <div style="height: 100%; background: linear-gradient(to top, rgba(2, 2, 2, 0.623),rgba(87, 86, 86, 0.39))">
+            <div class="col-md-10" style="margin-left: auto; margin-right: auto; padding-top: 50px;">
+                <form #form="ngForm" (ngSubmit)="action(form)">
+                    <!-- Welcome logged user -->
+                    <div *ngIf="authenticationService.getIsLoggedIn()">
+                        <h3 style="font-weight: bold; color: #FFAC8A;"> Welcome {{ user.username }} </h3>
+                    </div>
+                    <!-- Language DropDownList -->
+                    <div class="form-group first">
+                        <label for="language" style="color: white; font-weight: bold;"> Language: </label>
+                        <select name="language" id="language" ngModel class="form-control" style="height: 40px;">
+                            <option value='1'> Arabic </option>
+                            <option value='2'> English </option>
+                        </select>
+                    </div>
+                    <!-- Services DropDownList -->
+                    <div class="form-group first">
+                        <label for="operation_type" style="color: white; font-weight: bold;"> Operation: </label>
+                        <select name="operation_type" id="operation_type" ngModel [disabled]="!form.value.language" class="form-control" style="height: 40px;">
+                            <option *ngFor="let opType of myOpTypes;" [value]="opType.idOpType">
+                                {{ opType.nameOpType }}
+                            </option>
+                        </select>
+                    </div>
+                    <!-- Text-area -->
+                    <div class="form-group first">
+                        <label for="text_area" style="color: white; font-weight: bold;">Text:</label>
+                        <input type="text" ngModel name="text_area" id="text_area" class="form-control" style="height: 200px;" placeholder="enter your text here ..." />
+                    </div>
+                    <!-- Button Result -->
+                    <div class="form-group first">
+                        <button [disabled]="!form.value.operation_type ||!form.value.language" type="submit" class="btn btn-block" style="font-weight: bold; font-size: large; color: white; background-color: #FFAC8A;"> 
+                            Result
+                        </button>
+                    </div>
+                    <!-- Result text -->
+                    <div class="form-group first">
+                        <label for="result" style="color: white; font-weight: bold;">Result:</label>
+                        <input [(ngModel)]="result" name="result" id="result" type="text" class="form-control" style="height: 200px;" placeholder="result ...">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

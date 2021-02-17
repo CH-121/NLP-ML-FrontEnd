@@ -1,0 +1,50 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <title>Sign Up</title>
+</head>
+<div class="d-lg-flex half" style="height: max-content;">
+    <!-- Right div (image) -->
+    <div class="bg order-1 order-md-2" style="background-image: url('../../../assets/5.jpg');"></div>
+    <!-- Left div (form) -->
+    <div class="contents order-2 order-md-1" style="background-image: linear-gradient(to left, #4192b8f3 0%, #3d84be 31%, #56317a 100%);">
+        <div class="col-md-7" style="margin-left: auto; margin-right: auto; padding-top: 50px;">
+            <!-- Form -->
+            <form #signupForm="ngForm" (ngSubmit)="signup(signupForm)">
+                <!-- Username -->
+                <div class="form-group first">
+                    <label for="username" style="color: white; font-weight: bold;">Username: </label>
+                    <input ngModel name="username" id="username" type="text" class="form-control" placeholder="your-username">
+                </div>
+                <!-- E-mail -->
+                <div class="form-group first">
+                    <label for="email" style="color: white; font-weight: bold;">E-mail: </label>
+                    <input ngModel name="email" id="email" type="text" class="form-control" placeholder="your-email@gmail.com">
+                </div>
+                <!-- Password -->
+                <div class="form-group last mb-3">
+                    <label for="password" style="color: white; font-weight: bold;">Password: </label>
+                    <input ngModel name="password" id="password" type="password" class="form-control" placeholder="Enter a password ...">
+                </div>
+                <!-- Password confirmation -->
+                <div class="form-group last mb-3">
+                    <label for="passwordConfirmation" style="color: white; font-weight: bold;">Password confirmation: </label>
+                    <input ngModel name="passwordConfirmation" id="passwordConfirmation" type="password" class="form-control" placeholder="Re-enter the password ...">
+                </div>
+                <!-- Errors -->
+                <div style="color: lightcoral;">
+                    {{ error }}
+                </div>
+                <br />
+                <!-- Button Sign Up -->
+                <div>
+                    <button [disabled]="!signupForm.value.username || !signupForm.value.email || !signupForm.value.password || !signupForm.value.passwordConfirmation" type="submit" class="btn btn-block" style="font-weight: bold; font-size: large; color: white; background-color: #FFAC8A;">
+                        Sign Up
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

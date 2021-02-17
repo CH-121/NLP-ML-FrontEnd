@@ -1,0 +1,52 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NLTK Arabic Project</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,700">
+</head>
+<!-- Nav -->
+<div class="header-dark">
+    <nav class="navbar navbar-dark navbar-expand-md navigation-clean-search">
+        <div class="container">
+            <!-- Logo -->
+            <img src="../../assets/logo.png" alt="logo" style="width: 60px; position: absolute; left: 20px;">
+            <!-- Links -->
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <!-- Left links -->
+                <ul class="nav navbar-nav">
+                    <!-- NLTK link -->
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" routerLink="/nltk" style="color: black;">NLTK</a>
+                    </li>
+                    <!-- Services link -->
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" routerLink="/articles" style="color: black;">Services</a>
+                    </li>
+                    <!-- History link -->
+                    <li class="nav-item" role="presentation" *ngIf="authenticationService.getIsLoggedIn()">
+                        <a class="nav-link" routerLink="/operations" style="color: black;">History</a>
+                    </li>
+                </ul>
+                <!-- Right links -->
+                <ul class="nav navbar-nav" style="position: absolute; right: 20px;">
+                    <!-- Log Out link -->
+                    <li *ngIf="authenticationService.getIsLoggedIn()" class="nav-item">
+                        <a routerLink="" (click)="authenticationService.logout()" class="btn btn-light action-button" role="button">Log Out</a>
+                    </li>
+                    <!-- Log In link -->
+                    <li *ngIf="!authenticationService.getIsLoggedIn()" class="nav-item">
+                        <a routerLink="/login" class="nav-link" style="color: black;">Log In</a>
+                    </li>
+                    <!-- Sign Up link -->
+                    <a *ngIf="!authenticationService.getIsLoggedIn()" routerLink="/signup" class="btn btn-light action-button" role="button">Sign Up</a>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+<router-outlet></router-outlet>

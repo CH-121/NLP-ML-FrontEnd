@@ -1,0 +1,39 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <title>Login</title>
+</head>
+<div class="d-lg-flex half" style="height: max-content;">
+    <!-- Right div (image) -->
+    <div class="bg order-1 order-md-2" style="background-image: url('../../../assets/5.jpg');"></div>
+    <!-- Left div (form) -->
+    <div class="contents order-2 order-md-1" style="background-image: linear-gradient(to left, #4192b8f3 0%, #3d84be 31%, #56317a 100%);">
+        <div class="col-md-7" style="margin-left: auto; margin-right: auto; padding-top: 50px;">
+            <!-- Form -->
+            <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+                <!-- E-mail -->
+                <div class="form-group first">
+                    <label for="email" style="color: white; font-weight: bold;">E-mail: </label>
+                    <input ngModel name="email" id="email" type="text" class="form-control" placeholder="your-email@gmail.com">
+                </div>
+                <!-- Password -->
+                <div class="form-group last mb-3">
+                    <label for="password" style="color: white; font-weight: bold;">Password: </label>
+                    <input ngModel name="password" type="password" class="form-control" placeholder="Your Password" id="password">
+                </div>
+                <!-- Errors -->
+                <div style="color: lightcoral;">
+                    {{ error }}
+                </div>
+                <br />
+                <!-- Button Log In -->
+                <div>
+                    <button [disabled]="!loginForm.value.email || !loginForm.value.password" type="submit" class="btn btn-block" style="font-weight: bold; font-size: large; color: white; background-color: #FFAC8A;">
+                        Log In
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

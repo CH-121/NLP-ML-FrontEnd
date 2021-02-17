@@ -1,0 +1,97 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <title>Services</title>
+</head>
+<div class="d-lg-flex half" style="height: max-content;">
+    <!-- Right div -->
+    <div class="bg order-1 order-md-2" style="background: linear-gradient(to top, rgba(2, 2, 2, 0.623),rgba(87, 86, 86, 0.39)),center top / cover url('../../../assets/5.jpg')">
+        <!-- Fake News -->
+        <div *ngIf="fakeResult != ''">
+            <p *ngIf="fakeResult == '0'" class="form-control" style="height: max-content; width: inherit; margin-left: 10px; margin-right: 10px; margin-top: 20px; font-weight: bold; color: #050505f3;">
+                Fake
+            </p>
+            <p *ngIf="fakeResult == '1'" class="form-control" style="height: max-content; width: inherit; margin-left: 10px; margin-right: 10px; margin-top: 20px; font-weight: bold; color: #050505f3;">
+                True
+            </p>
+        </div>
+        <!-- Sentiment analysis -->
+        <div *ngIf="sentimentResult != ''">
+            <p *ngIf="sentimentResult == '0.0'" class="form-control" style="height: max-content; width: inherit; margin-left: 10px; margin-right: 10px; margin-top: 20px; font-weight: bold; color: #050505f3;">
+                Neutral
+            </p>
+            <p *ngIf="sentimentResult > '0.0'" class="form-control" style="height: max-content; width: inherit; margin-left: 10px; margin-right: 10px; margin-top: 20px; font-weight: bold; color: #050505f3;">
+                Positive
+            </p>
+            <p *ngIf="sentimentResult < '0.0'" class="form-control" style="height: max-content; width: inherit; margin-left: 10px; margin-right: 10px; margin-top: 20px; font-weight: bold; color: #050505f3;">
+                Negative
+            </p>
+        </div>
+        <!-- No Result -->
+        <div *ngIf="data.length == 0 && fakeResult == '' && sentimentResult == ''">
+            <p class="form-control" style="height: max-content; width: inherit; margin-left: 10px; margin-right: 10px; margin-top: 20px;">
+                No result to show !
+            </p>
+        </div>
+        <!-- Data -->
+        <div *ngFor="let dt of data;" style="margin-top: 20px;">
+            <div class="form-control" style="
+                    direction: rtl; 
+                    text-align: start; 
+                    height: max-content; 
+                    width: inherit; 
+                    margin-left: 10px; 
+                    margin-right: 10px;">
+                <!-- Article title -->
+                <div style="font-weight: bold;">
+                    {{ dt.titleDt }}
+                </div>
+                <!-- Article date -->
+                <div style="color: #FC7641;">
+                    {{ dt.datePostDt }}
+                </div>
+                <!-- Article content -->
+                <div>
+                    {{ dt.contentDt }}
+                </div>
+                <!-- Article url -->
+                <div style="text-align: left; word-wrap: break-word;">
+                    <a style=" color: deepskyblue;" href="{{ dt.urlDt }}" target="_blank" rel="noreferrer noopener"> {{ dt.urlDt }} </a>
+                </div>
+            </div>
+            <br />
+        </div>
+    </div>
+    <!-- Left div -->
+    <div class="contents order-2 order-md-1" style="background-image: linear-gradient(to left, #4192b8f3 0%, #3d84be 31%, #56317a 100%);">
+        <div style="height: 100%; background: linear-gradient(to top, rgba(2, 2, 2, 0.623),rgba(87, 86, 86, 0.39))">
+            <div class="col-md-10" style="margin-left: auto; margin-right: auto; padding-top: 50px;">
+                <form #articleForm="ngForm" (ngSubmit)="search(articleForm)">
+                    <!-- Text Area -->
+                    <div class="form-group first">
+                        <label for="text_area" style="color: white; font-weight: bold;">Text: </label>
+                        <input type="text" name="text_area" id="text_area" class="form-control" style="height: 200px;" ngModel placeholder="write your text here ...">
+                    </div>
+                    <!-- Button Search -->
+                    <button type="submit" class="btn btn-block" [disabled]="!articleForm.value.text_area" style="font-weight: bold; font-size: large; color: white; background-color: #FFAC8A;">
+                        Search
+                    </button>
+                </form>
+                <br />
+                <!-- Button Fake ? -->
+                <div class="form-group first">
+                    <button type="submit" class="btn btn-block" [disabled]="!articleForm.value.text_area" (click)="fake(articleForm.value.text_area)" style="font-weight: bold; font-size: large; color: white; background-color: #1c7ff0;">
+                    Fake ?
+                </button>
+                </div>
+                <!-- Button Sentiment -->
+                <div class="form-group first">
+                    <button type="submit" class="btn btn-block" [disabled]="!articleForm.value.text_area" (click)="sentiment(articleForm.value.text_area)" style="font-weight: bold; font-size: large; color: white; background-color: #7cbcf8;">
+                        Sentiment
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

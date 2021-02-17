@@ -1,0 +1,49 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Articles</title>
+    <style>
+        h5 {
+            color: #FC7641;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<div style="background: linear-gradient(to top, rgb(43, 42, 42),rgba(32, 32, 32, 0.533)),center top / cover url('../../../assets/5.jpg'); height: max-content; width: 100%; text-align: center; display: inline-flex; flex-wrap:wrap;">
+    <div *ngFor="let userOp of userOperations;" style="padding-top: 20px;">
+        <!-- Operation div -->
+        <div class="form-control" style="
+                    height: max-content; 
+                    padding-left: 10px; 
+                    padding-right: 10px;
+                    border: 1px solid black;
+                    width: 350px;
+                    margin-left: 20px;
+                    margin-right: 20px;
+                    transition: .5s;
+                    border-radius: 7px;
+                    box-shadow: snow;">
+            <!-- Operation type -->
+            <div>
+                <h5>Operation type </h5>
+                <p style="color: black; font-size: larger;">{{ userOp.operationType }}</p>
+            </div>
+            <!-- Operation date -->
+            <div>
+                <h5>Date </h5>
+                <p style="color: black; font-size: larger;">{{ userOp.dateOp }}</p>
+            </div>
+            <!-- Operation text -->
+            <div>
+                <h5>Text </h5>
+                <p style="color: black; font-size: larger;">{{ userOp.textOp }}</p>
+            </div>
+            <!-- Operation result -->
+            <div>
+                <h5>Result </h5>
+                <p style="color: black; font-size: larger;">{{ userOp.resultOp }}</p>
+            </div>
+        </div>
+        <br />
+    </div>
+</div>
